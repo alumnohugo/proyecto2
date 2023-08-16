@@ -23,7 +23,7 @@ public static function loginAPI(){
                 $_SESSION['auth_user'] = $catalogo;
                 echo json_encode([
                     'codigo' => 1,
-                    'mensaje'=>"Sesion iniciada correctamente. Bienvenido .$nombre"
+                    'mensaje'=>"Sesion iniciada correctamente. Bienvenido $nombre"
 
                 ]);
                 }else{

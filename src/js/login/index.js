@@ -21,7 +21,20 @@ const login =async e => {
         }
         const respuesta = await fetch(url, config);
         const data = await respuesta.json();
-        console.log(data)
+        const {codigo, mensaje, detalle} = data;
+        let icon = 'info';
+        if(codigo == 1){
+            icon = 'success'
+        }else if (codigo == 2){
+            icon ='warning'
+        }else {
+            icon='error'
+        }
+        Toast.fire({
+            title : mensaje,
+            icon
+        })
+        // console.log(data)
     }catch (error){
         console.log(error);
     }

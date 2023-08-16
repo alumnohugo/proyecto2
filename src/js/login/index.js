@@ -1,25 +1,21 @@
 import { validarFormulario, Toast } from "../funciones";
-
-const formLogin = document.querySelector('form')
-
-
+const formLogin = document.querySelector('form');
 const login = async e => {
     e.preventDefault();
-   
-    if(!validarFormulario(formLogin)){
+    if (!validarFormulario(formLogin)) {
         Toast.fire({
             icon: 'info',
-            title: 'Debe llenar todos los campos'
+            title: 'Rellene todos los campos'
         })
-        return
+        return;
     }
-
     try {
         const url = '/proyecto2/API/login'
 
         const body = new FormData(formLogin);
-        
+
         const headers = new Headers();
+
         headers.append("X-Requested-With", "fetch");
 
         const config = {
@@ -27,17 +23,24 @@ const login = async e => {
             headers,
             body
         }
-
         const respuesta = await fetch(url, config);
         const data = await respuesta.json();
-        console.log(data);
-        
-
+        const {codigo, mensaje, detalle} = data; 
+        //console.log(data);
+        let icon = 'info'; 
+        if(codigo == 1){
+            icon = 'success'
+        }else if(codigo == 2){
+            icon ='warning'
+        }else{
+            icon='error'
+        }
+        Toast.fire({
+            title : mensaje, 
+            icon
+        })
     } catch (error) {
         console.log(error);
     }
-
-    
 }
-
-formLogin.addEventListener('submit', login );
+formLogin.addEventListener('submit', login);

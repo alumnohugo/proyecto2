@@ -33,6 +33,7 @@ const login = async e => {
         const {codigo, mensaje, detalle} = data;
         let icon = 'info';
         if(codigo == 1){
+            window.location.href = '/proyecto2/menu'
             icon = 'success'
         }else if(codigo == 2){
             icon = 'warning'

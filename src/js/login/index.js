@@ -34,7 +34,9 @@ const login = async e => {
         let icon = 'info';
         if (codigo == 1) {
             icon = 'success'
-            window.location.href = redireccion
+            setTimeout(() => {
+                window.location.href = redireccion;
+            }, 3000);
 
 
         } else if (codigo == 2) {

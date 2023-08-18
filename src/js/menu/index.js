@@ -1,5 +1,6 @@
 const formLogin = document.querySelector('form');
 
+
 const closeSessionRequest = async e => {
     e.preventDefault();
 

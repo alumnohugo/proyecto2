@@ -14,7 +14,7 @@ const login = async e => {
     }
 
     try {
-        const url = "/proyecto2/API/login"; 
+        const url = "/proyecto2/API/login";
 
         const body = new FormData(formLogin);
 
@@ -30,22 +30,24 @@ const login = async e => {
         const respuesta = await fetch(url, config);
         const data = await respuesta.json();
 
-        const {codigo, mensaje, detalle} = data;
+        const { codigo, mensaje, redireccion } = data;
         let icon = 'info';
-        if(codigo == 1){
-            window.location.href = '/proyecto2/menu'
+        if (codigo == 1) {
             icon = 'success'
-        }else if(codigo == 2){
+            window.location.href = redireccion
+
+
+        } else if (codigo == 2) {
             icon = 'warning'
-        }else{
+        } else {
             icon = 'error'
         }
 
         Toast.fire({
-            title : mensaje,
+            title: mensaje,
             icon
         })
-      
+
     } catch (error) {
         console.log(error);
     }
